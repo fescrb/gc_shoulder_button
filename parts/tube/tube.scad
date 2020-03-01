@@ -24,7 +24,7 @@ module tube() {
     }
     rotate([0,0,45]){
         translate([3.4,0,15]){
-            anchor(h=4);
+            anchor(h=2);
         }
     }
     rotate([0,0,135]){
