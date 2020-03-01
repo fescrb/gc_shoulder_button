@@ -1,4 +1,4 @@
-$fn=50;
+$fn=100;
 module cap() {
     module cap_shape(width,depth,height) {
         module slanted_cylinder(s_offset,length) {
@@ -27,6 +27,24 @@ module cap() {
                     }
                     translate([-6,-0.5,0]){
                         cube([6,3,height+3]);
+                    }
+                }
+            }
+        }
+        module far_cylinder() {
+            translate([3,depth-7,height-7]) {
+                rotate([0,90,0]){
+                    cylinder(r=7,h=width-13);
+                }
+            }
+        }
+        module slanted_cube() {
+            // Cube that occupies the whole slanted area. 
+            // For intersect & diff purposes.
+            translate([width-10,depth,-2]) {
+                rotate([0,0,-atan(7/10)]){
+                    translate([0,-7,0]){
+                        cube([l,7,height+2]);
                     }
                 }
             }
@@ -67,19 +85,14 @@ module cap() {
             cube([width-13,depth,height-5]);
             translate([0,0,height-5]){
                 cube([width-12,depth-10,7]);
-                cube([width-13,depth-7,7]);
+                cube([width-15,depth-7,7]);
             }
             rotate([0,0,-atan(1/11)]){
                 cube([sqrt((11*11)+2),2,height+2]);
             }
-            translate([0,depth-7,height-5]){
-                rotate([0,90,0]){
-                    cylinder(r=7,h=width-13);
-                }
-            }
             //closing some holes
             translate([width-12,-1,height]){
-                cube([2,depth-6,2]);
+                cube([2,depth-9,2]);
             }
             cube([width-7,depth-7,height-10]);
         }
@@ -93,14 +106,39 @@ module cap() {
             rotate([0,0,-atan(7/10)]){
                 translate([0,-7,0]){
                     cube([l,7,height-5]);
-                    translate([0,-2,2]){
-                        cube([l,2,height]);
+                    translate([2,-4,2]){
+                        cube([l/2,4,height]);
                     }
                 }
             }
         }
-        right_cylinder(depth-6);   
-        slanted_cylinder(0,l);     
+        slanted_cylinder(l/5,l/2);
+        // Right far corner
+        intersection() {
+            right_cylinder(depth-6);   
+            slanted_cylinder(0,l);
+        }
+        difference(){
+            slanted_cylinder(l/2,l/2);
+            cube([width,depth-7,height]);
+        }
+        difference() {
+            right_cylinder(depth-6);   
+            slanted_cube();
+        }
+        // middle corner
+        intersection() {
+            far_cylinder();
+            slanted_cylinder(0,l);
+        }
+        difference() {
+            far_cylinder();
+            slanted_cube();
+        }
+        difference(){
+            slanted_cylinder(0,l/2);
+            cube([width-10,depth,height]);
+        }
     }
     difference(){
         cap_shape(width=23,depth=18,height=16);

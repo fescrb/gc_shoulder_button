@@ -1,10 +1,10 @@
 $fn=50;
 module tube() {
-    module anchor(h) {
+    module anchor(w,h) {
         // Center the y axis
         translate([0,-0.5,0]){
             difference(){
-                cube([4,1,h]);
+                cube([w,1,h]);
                 translate([1,-0.5,-0.5]){
                     cube([2,2,1.5]);
                 }
@@ -24,22 +24,22 @@ module tube() {
     }
     rotate([0,0,45]){
         translate([3.4,0,15]){
-            anchor(h=2);
+            anchor(w=3,h=2);
         }
     }
     rotate([0,0,135]){
         translate([3.4,0,15]){
-            anchor(h=4);
+            anchor(w=4,h=4);
         }
     }
     rotate([0,0,225]){
         translate([3.4,0,15]){
-            anchor(h=4);
+            anchor(w=4,h=4);
         }
     }
     rotate([0,0,315]){
         translate([3.4,0,15]){
-            anchor(h=4);
+            anchor(w=4,h=4);
         }
     }
 }
