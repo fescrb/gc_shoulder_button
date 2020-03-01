@@ -8,3 +8,4 @@ After the first objective is achieved. The aim is to parameterize travel times f
 
 # The button
 
+![Shoulder Cap - Front](images/shb_front.jpg)

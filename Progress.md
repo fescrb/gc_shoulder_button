@@ -16,4 +16,11 @@ Didn't quite get the top smooth but I did manage to fit the button in the contro
 
 The clips to attach the spring base are too flimsy at 0.5mm length, I will increase it to 1.5mm and increase the size of the hole that keeps the metal in place.
 
+![Font](images/test2_front.jpg)
+
+![Back](images/test2_back.jpg)
+
+![Font](images/test2_bottom.jpg)
+
+
 # Test 3:
