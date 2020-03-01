@@ -12,9 +12,9 @@ translate([-12,0,-3]){
 translate([-3,0,0]){
     clips();
 }
-translate([22,2,-4.5]){
+translate([22,1,-4.5]){
     lip();
 }
-translate([12,9,-4.5]){
+translate([12,8,-4.5]){
     tube();
 }

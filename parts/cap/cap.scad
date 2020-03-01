@@ -141,9 +141,9 @@ module cap() {
         }
     }
     difference(){
-        cap_shape(width=23,depth=18,height=16);
+        cap_shape(width=23,depth=17,height=16);
         translate([1,1,-2]){
-            cap_shape(width=21,depth=16,height=17);
+            cap_shape(width=21,depth=15,height=17);
         }
     }
 }

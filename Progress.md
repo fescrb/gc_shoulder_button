@@ -25,4 +25,8 @@ The clips to attach the spring base are too flimsy at 0.5mm length, I will incre
 
 # Test 3:
 
-I increased the depth of the clips. However they snapped when trying to connect the metal rail. Unfortunately I forgot to make the cutout go all the way through but I think that had no effect. I'll try making the gap larger to make it easier to slide in the bar, and hopefully less likely to 
+I increased the depth of the clips. However they snapped when trying to connect the metal rail. Unfortunately I forgot to make the cutout go all the way through but I think that had no effect. I'll try making the gap larger to make it easier to slide in the bar, and hopefully less likely to snap.
+
+# Test 4:
+
+The changes to the clips fixed the issue. Now it fits into the slot but when the plastic lid is closed properly it gets stuck. For the next test I will remove one millimeter of depth.
