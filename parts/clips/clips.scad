@@ -4,11 +4,11 @@ module clips(){
         cube([2,1.5,4]);
         translate([2.5,0,0]){
             difference(){
-                cube([0.5,1.5,4]);
+                cube([1.5,1.5,4]);
                 translate([0,0,-3]){
                     rotate([90,0,0]){
                         translate([0,4,-2]){
-                            cylinder(h=2.5, r=0.25);
+                            cylinder(h=2.5, r=0.5);
                         }
                     }
                 }
