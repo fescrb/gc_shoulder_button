@@ -1,5 +1,5 @@
 $fn=50;
-module tube() {
+module tube(stop_offset) {
     module anchor(w,h) {
         // Center the y axis
         translate([0,-0.5,0]){
@@ -16,10 +16,12 @@ module tube() {
             }
         }
     }
-    difference() {
-        cylinder(d=7,h=20);
-        translate([0,0,-0.5]){
-            cylinder(d=5,h=21);
+    translate([0,0,-stop_offset]){
+        difference() {
+            cylinder(d=7,h=20+stop_offset);
+            translate([0,0,-0.5]){
+                cylinder(d=5,h=21+stop_offset);
+            }
         }
     }
     rotate([0,0,45]){
@@ -43,4 +45,4 @@ module tube() {
         }
     }
 }
-tube();
+tube(stop_offset=0);
