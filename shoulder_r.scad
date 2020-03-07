@@ -1,4 +1,4 @@
-use <parts/cap/cap.scad>
+use <parts/cap/cap_extruded.scad>
 use <parts/lever/lever.scad>
 use <parts/clips/clips.scad>
 use <parts/lip/lip.scad>
@@ -12,7 +12,7 @@ module r_shoulder_button(action_offset, stop_offset){
     translate([-3,0,0]){
         clips();
     }
-    translate([22,1,-4.5]){
+    translate([23,1,-4.5]){
         lip();
     }
     translate([12,8,-4.5]){
@@ -20,4 +20,4 @@ module r_shoulder_button(action_offset, stop_offset){
     }
 }
 
-r_shoulder_button(3,1);
+r_shoulder_button(0,0);

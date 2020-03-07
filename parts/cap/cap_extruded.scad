@@ -1,71 +1,64 @@
 module cap() {
     function lerp(start, end, alpha) = [for (i = [0: len(start)-1]) start[i] + (alpha * (end[i] - start[i]))];
     function lin_bezier(start, end, control, steps) = [ 
-        //start,
         for (i = [1: steps]) lerp(lerp(start, control, i/steps),lerp(control,end,i/steps),i/steps)
-        //end,
     ];
+    function concatenate(lhs, rhs) = [for (i = [0 : len(lhs)+len(rhs) -1]) i < len(lhs) ? lhs[i] : rhs[i-len(lhs)]];
     module cap_shape(width,depth,h) {
-        echo(lerp([0,0], [2,2],0.5));
+        // Lhs straight shape
+        base_shape0=[[0,1],[0,depth-2]];
+        // Add curve at far left
+        base_shape1 = concatenate(base_shape0, lin_bezier([0,depth-2],[2,depth],[0,depth],40));
+        // Add the back
+        base_shape2 = concatenate(base_shape1, lin_bezier([2,depth], [width,depth-9],[width+1,depth],200));
+        // Add the right straight shape
+        base_shape3 = concatenate(base_shape2, [[width,1]]);
+        // Ass the curve at the right front
+        base_shape4 = concatenate(base_shape3, lin_bezier([width,0],[width-1,-1],[width,-1],40));
+        // Add the front
+        base_shape5 = concatenate(base_shape4, lin_bezier([width-1,-1],[1,0],[8,-1],200));
+        // Add the curve at the front left
+        base_shape = concatenate(base_shape5, lin_bezier([1,0],[0,1],[0,0], 40));
+        /*
+         * Top of the cap
+         */
         intersection() {
             linear_extrude(height=h,center=false, twisth=0,slices=0) {
-                polygon(points=[
-                    [0,0],
-[0,14.65],
-[0.12,14.95],
-[0.19,15.14],
-[0.34,15.33],
-[0.56,15.52],
-[0.74,15.64],
-[1.18,15.73],
-[1.49,15.83],
-[1.73,15.85],
-[1.92,15.88],
-[1.92,15.88],
-[2.37,15.91],
-[2.71,15.94],
-[3.25,16.04],
-[4.06,16.07],
-[4.49,16.12],
-[6.50,16.07],
-[7.53,16],
-[9.46,15.87],
-[11.43,15.67],
-[13.95,15.41],
-[14.45,15.02],
-[15.05,14.93],
-[15.90,14.66],
-[16.51,14.43],
-[17.19,14.18],
-[17.73,13.95],
-[18.33,13.60],
-[18.83,13.29],
-[19.26,12.93],
-[19.57,12.64],
-[19.90,12.23],
-[20.16,11.86],
-[20.49,11.40],
-[20.76,10.92],
-[21.00,10.47],
-[21.11,10.10],
-[21.24,9.76],
-[21.49,8.76],
-[21.83,8.00],
-[21.83,-0.34],
-
-
-                ]
-                );
+                polygon(points=base_shape);
             }
             translate([width*.25, depth*0.35,-h*0.35]){ 
                 sphere(r=width, $fn=300);
             }
         }
+        translate([0,0,-2]){
+            // First tier
+            difference() {
+                linear_extrude(height=2,center=false, twisth=0,slices=0) {
+                    polygon(points=base_shape);
+                }
+                cube([3,depth,2]);
+            }
+            translate([0,0,-1]){
+                difference() {
+                    linear_extrude(height=1,center=false, twisth=0,slices=0) {
+                        polygon(points=base_shape);
+                    }
+                    translate([0,-1,0]){
+                        union() {
+                            cube([width-9,depth+2,1]);
+                            translate([width-9,11,0]){
+                                cube([9,depth-10,1]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     difference(){
-        cap_shape(width=23,depth=17,h=16);
+        cap_shape(width=24,depth=18,h=16);
         translate([1,1,-2]){
-            //cap_shape(width=21,depth=15,h=17);
+            cap_shape(width=22,depth=16,h=17);
         }
     }
 }
