@@ -20,4 +20,4 @@ module r_shoulder_button(action_offset, stop_offset){
     }
 }
 
-r_shoulder_button(2.5,4.5);
+r_shoulder_button(0,0);
