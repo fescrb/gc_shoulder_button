@@ -6,7 +6,7 @@ module cap() {
     function concatenate(lhs, rhs) = [for (i = [0 : len(lhs)+len(rhs) -1]) i < len(lhs) ? lhs[i] : rhs[i-len(lhs)]];
     module cap_shape(width,depth,h) {
         // Lhs straight shape
-        base_shape0=[[0,1],[0,depth-2]];
+        base_shape0=[[0,2],[0,depth-2]];
         // Add curve at far left
         base_shape1 = concatenate(base_shape0, lin_bezier([0,depth-2],[2,depth],[0,depth],40));
         // Add the back
@@ -16,14 +16,14 @@ module cap() {
         // Ass the curve at the right front
         base_shape4 = concatenate(base_shape3, lin_bezier([width,0],[width-1,-1],[width,-1],40));
         // Add the front
-        base_shape5 = concatenate(base_shape4, lin_bezier([width-1,-1],[1,0],[width-8,-1.5],200));
+        base_shape5 = concatenate(base_shape4, lin_bezier([width-1,-1],[2,0],[width-7,-1.5],200));
         // Add the curve at the front left
-        base_shape = concatenate(base_shape5, lin_bezier([1,0],[0,1],[0,0], 40));
+        base_shape = concatenate(base_shape5, lin_bezier([2,0],[0,2],[0,0], 40));
         /*
          * Top of the cap
          */
         intersection() {
-            linear_extrude(height=h,center=false, twisth=0,slices=0) {
+            linear_extrude(height=h,center=false, twist=0,slices=0) {
                 polygon(points=base_shape);
             }
             translate([width*.25, depth*0.35,-h*0.35]){ 
@@ -33,14 +33,14 @@ module cap() {
         translate([0,0,-2]){
             // First tier
             difference() {
-                linear_extrude(height=2,center=false, twisth=0,slices=0) {
+                linear_extrude(height=2,center=false, twist=0,slices=0) {
                     polygon(points=base_shape);
                 }
                 cube([3,depth,2]);
             }
             translate([0,0,-1]){
                 difference() {
-                    linear_extrude(height=1,center=false, twisth=0,slices=0) {
+                    linear_extrude(height=1,center=false, twist=0,slices=0) {
                         polygon(points=base_shape);
                     }
                     translate([0,-1,0]){

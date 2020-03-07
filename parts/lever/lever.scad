@@ -4,7 +4,7 @@ module lever(action_offset){
             union(){
                 cube([10,2,action_offset+7]);
                 translate([10,0,action_offset+3]){
-                    cube([2,2,4]);
+                    cube([3,2,4]);
                 }
             }
             translate([2,-0.5,2.5]){
