@@ -29,4 +29,4 @@ I increased the depth of the clips. However they snapped when trying to connect 
 
 # Test 4:
 
-The changes to the clips fixed the issue. Now it fits into the slot but when the plastic lid is closed properly it gets stuck. For the next test I will remove one millimeter of depth.
+The changes to the clips fixed the issue. Now it fits into the slot but when the plastic lid is closed properly it gets stuck. For the next test I will remove one millimeter of depth through the button. 
