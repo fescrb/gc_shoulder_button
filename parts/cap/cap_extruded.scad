@@ -10,13 +10,13 @@ module cap() {
         // Add curve at far left
         base_shape1 = concatenate(base_shape0, lin_bezier([0,depth-2],[2,depth],[0,depth],40));
         // Add the back
-        base_shape2 = concatenate(base_shape1, lin_bezier([2,depth], [width,depth-9],[width+1,depth],200));
+        base_shape2 = concatenate(base_shape1, lin_bezier([2,depth], [width,depth-9],[width,depth-1],200));
         // Add the right straight shape
         base_shape3 = concatenate(base_shape2, [[width,1]]);
         // Ass the curve at the right front
         base_shape4 = concatenate(base_shape3, lin_bezier([width,0],[width-1,-1],[width,-1],40));
         // Add the front
-        base_shape5 = concatenate(base_shape4, lin_bezier([width-1,-1],[1,0],[8,-1],200));
+        base_shape5 = concatenate(base_shape4, lin_bezier([width-1,-1],[1,0],[width-8,-1.5],200));
         // Add the curve at the front left
         base_shape = concatenate(base_shape5, lin_bezier([1,0],[0,1],[0,0], 40));
         /*
@@ -56,9 +56,9 @@ module cap() {
         }
     }
     difference(){
-        cap_shape(width=24,depth=18,h=16);
+        cap_shape(width=24,depth=18,h=15);
         translate([1,1,-2]){
-            cap_shape(width=22,depth=16,h=17);
+            cap_shape(width=22,depth=16,h=16);
         }
     }
 }

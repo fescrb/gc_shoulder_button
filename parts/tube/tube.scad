@@ -18,7 +18,7 @@ module tube(stop_offset) {
     }
     translate([0,0,-stop_offset]){
         difference() {
-            cylinder(d=7,h=20+stop_offset);
+            cylinder(d=7,h=19+stop_offset);
             translate([0,0,-0.5]){
                 cylinder(d=5,h=21+stop_offset);
             }
