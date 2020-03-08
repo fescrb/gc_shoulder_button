@@ -26,7 +26,7 @@ module cap() {
             linear_extrude(height=h,center=false, twist=0,slices=0) {
                 polygon(points=base_shape);
             }
-            translate([width*.25, depth*0.35,-h*0.35]){ 
+            translate([width*.25, depth*0.45,-h*0.75]){ 
                 sphere(r=width, $fn=300);
             }
         }
@@ -56,9 +56,9 @@ module cap() {
         }
     }
     difference(){
-        cap_shape(width=24,depth=18,h=15);
+        cap_shape(width=24,depth=18,h=12);
         translate([1,1,-2]){
-            cap_shape(width=22,depth=16,h=16);
+            cap_shape(width=22,depth=16,h=13);
         }
     }
 }

@@ -1,5 +1,5 @@
 $fn=50;
-module tube(stop_offset) {
+module tube(tube_height,stop_offset) {
     module anchor(w,h) {
         // Center the y axis
         translate([0,-0.5,0]){
@@ -18,31 +18,31 @@ module tube(stop_offset) {
     }
     translate([0,0,-stop_offset]){
         difference() {
-            cylinder(d=7,h=19+stop_offset);
+            cylinder(d=7,h=tube_height+stop_offset);
             translate([0,0,-0.5]){
                 cylinder(d=5,h=21+stop_offset);
             }
         }
     }
     rotate([0,0,45]){
-        translate([3.4,0,15]){
-            anchor(w=3,h=2);
+        translate([3.4,0,tube_height-anchor_height]){
+            anchor(w=4,h=anchor_height);
         }
     }
     rotate([0,0,135]){
-        translate([3.4,0,15]){
-            anchor(w=4,h=4);
+        translate([3.4,0,tube_height-anchor_height]){
+            anchor(w=4,h=anchor_height);
         }
     }
     rotate([0,0,225]){
-        translate([3.4,0,15]){
-            anchor(w=4,h=4);
+        translate([3.4,0,tube_height-anchor_height]){
+            anchor(w=4,h=anchor_height);
         }
     }
     rotate([0,0,315]){
-        translate([3.4,0,15]){
-            anchor(w=4,h=4);
+        translate([3.4,0,tube_height-anchor_height]){
+            anchor(w=4,h=anchor_height);
         }
     }
 }
-tube(stop_offset=0);
+tube(tube_height=13,anchor_height=2,stop_offset=0);

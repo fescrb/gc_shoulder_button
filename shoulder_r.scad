@@ -16,8 +16,8 @@ module r_shoulder_button(action_offset, stop_offset){
         lip();
     }
     translate([12,8,-4.5]){
-        tube(action_offset+stop_offset);
+        tube(tube_height=13, anchor_height=3, stop_offset=action_offset+stop_offset);
     }
 }
 
-r_shoulder_button(0,0);
+r_shoulder_button(2.5,2.5);
